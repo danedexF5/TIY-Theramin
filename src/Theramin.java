@@ -1,8 +1,11 @@
 import org.bulldog.beagleboneblack.BBBNames;
+import org.bulldog.core.Signal;
 import org.bulldog.core.gpio.AnalogInput;
+import org.bulldog.core.gpio.DigitalOutput;
 import org.bulldog.core.gpio.Pwm;
 import org.bulldog.core.platform.Board;
 import org.bulldog.core.platform.Platform;
+import org.bulldog.devices.led.Led;
 
 import java.util.Scanner;
 
@@ -34,25 +37,24 @@ public class Theramin {
 
         // Get a pulse width modulated (PWN) pin.
         // PWM_P8_12 = P8 12
-        //Pwm digital = board.getPin(BBBNames.P8_12).as(Pwm.class);
 
-        //Scanner
+        DigitalOutput speaker = board.getPin(BBBNames.P8_12).as(DigitalOutput.class);
 
-        Scanner quit = new Scanner(System.in);
+
 
         //main loop
 
         while (true) {
 
-            double flex = analogInput.read();
+            //double flex = analogInput.read();
 
-            Thread.sleep(100);
+            //Thread.sleep(100);
 
-            System.out.println(flex);
+            System.out.println(speaker.getAppliedSignal());
 
+            speaker.write(Signal.High);
 
-
-            //digital.setFrequency(1);
+            speaker.write(Signal.Low);
 
         }
 
@@ -60,7 +62,7 @@ public class Theramin {
     }
 
 }
-// TODO: 4/27/16  make flex sensor output something
+
 // TODO: 4/27/16  make piezo speaker make a noise 
 
 // TODO: 4/27/16  make speaker respond to flex sensor
