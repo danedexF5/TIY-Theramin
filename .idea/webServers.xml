@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="e73b5cc9-9d4c-4d10-b821-dd0856767183" name="Theramin" url="http://192.168.7.2">
+        <fileTransfer host="192.168.7.2" port="22" rootFolder="/root/Projects" accessType="SFTP" password="" username="root">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

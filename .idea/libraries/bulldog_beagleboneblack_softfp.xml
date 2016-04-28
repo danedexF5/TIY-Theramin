@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="bulldog.beagleboneblack.softfp">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/bulldog.beagleboneblack.softfp.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
