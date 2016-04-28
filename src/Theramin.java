@@ -1,13 +1,8 @@
 import org.bulldog.beagleboneblack.BBBNames;
-import org.bulldog.core.Signal;
 import org.bulldog.core.gpio.AnalogInput;
-import org.bulldog.core.gpio.DigitalOutput;
 import org.bulldog.core.gpio.Pwm;
 import org.bulldog.core.platform.Board;
 import org.bulldog.core.platform.Platform;
-import org.bulldog.devices.led.Led;
-
-import java.util.Scanner;
 
 /**
  * This makes the wiggly sounds
@@ -19,54 +14,87 @@ public class Theramin {
 
         Board board = Platform.createBoard();
 
-        /*
-        Important pins:
-        AIN1 = P9 40 (analog input 1) for flex
-        P9 34 = ground (-) for flex
-        P9 32 = power (+) for flex
+        //touch sensor
 
-        GPIO_14 = P8 12 (digital input) for speaker
-        P8 02 = ground (-) for speaker
-         */
-
-        // Get an analogInput
-        // AIN1 = P9 40 (analog input 1)
-        // The light sensor is grounded to P9 34.
-        // This is the flex sensor
         AnalogInput analogInput = board.getPin(BBBNames.AIN1).as(AnalogInput.class);
 
-        // Get a pulse width modulated (PWN) pin.
-        // PWM_P8_12 = P8 12
-
-        DigitalOutput speaker = board.getPin(BBBNames.P8_12).as(DigitalOutput.class);
+        //speaker
 
         Pwm beeper = board.getPin(BBBNames.EHRPWM2A_P8_19).as(Pwm.class);
+
+        /*
+
+
+         */
 
         //main loop
 
         while (true) {
 
-            double flex = analogInput.read();
+            double touch = (analogInput.read()) * 10;
+            int note = (int)touch;
 
-            System.out.println(flex);
+            System.out.println(note);
 
-            /*
+            Thread.sleep(200);
 
-            speaker.write(Signal.High);
+                switch (note) {
+                    //c4
+                    case 0:
+                        beeper.setFrequency(261.63);
+                        break;
+                    //d4
+                    case 1:
+                        beeper.setFrequency(293.66);
+                        break;
+                    //e4
+                    case 2:
+                        beeper.setFrequency(329.63);
+                        break;
+                    //f4
+                    case 3:
+                        beeper.setFrequency(349.23);
+                        break;
+                    //g4
+                    case 4:
+                        beeper.setFrequency(392);
+                        break;
+                    //a4
+                    case 5:
+                        beeper.setFrequency(440);
+                        break;
+                    //b4
+                    case 6:
+                        beeper.setFrequency(493.88);
+                        break;
+                    //c5
+                    case 7:
+                        beeper.setFrequency(523.25);
+                        break;
+                    //d5
+                    case 8:
+                        beeper.setFrequency(587.33);
+                        break;
+                    //e5
+                    case 9:
+                        beeper.setFrequency(659.25);
+                        break;
+                    //f5
+                    case 10:
+                        beeper.setFrequency(698.46);
+                        break;
 
-            Thread.sleep((long)flex);
+                    default:
+                        break;
 
-            speaker.write(Signal.Low);
+            }
 
-            Thread.sleep((long)flex);
-
-            */
-
-            beeper.setFrequency(3400f);
+            //beeper.setFrequency(touch);
 
             beeper.setDuty(0.5f);
 
             beeper.enable();
+
 
         }
 
@@ -75,3 +103,5 @@ public class Theramin {
 
 }
 
+//todo define and implement notes
+//todo add second speaker + accelerometer
