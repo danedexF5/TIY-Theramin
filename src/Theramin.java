@@ -40,6 +40,8 @@ public class Theramin {
 
         DigitalOutput speaker = board.getPin(BBBNames.P8_12).as(DigitalOutput.class);
 
+        Pwm beeper = board.getPin(BBBNames.EHRPWM2A_P8_19).as(Pwm.class);
+
         //main loop
 
         while (true) {
@@ -48,13 +50,23 @@ public class Theramin {
 
             System.out.println(flex);
 
+            /*
+
             speaker.write(Signal.High);
 
-            Thread.sleep((long)flex * 100);
+            Thread.sleep((long)flex);
 
             speaker.write(Signal.Low);
 
-            Thread.sleep((long)flex / 100);
+            Thread.sleep((long)flex);
+
+            */
+
+            beeper.setFrequency(3400f);
+
+            beeper.setDuty(0.5f);
+
+            beeper.enable();
 
         }
 
