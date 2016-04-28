@@ -40,21 +40,21 @@ public class Theramin {
 
         DigitalOutput speaker = board.getPin(BBBNames.P8_12).as(DigitalOutput.class);
 
-
-
         //main loop
 
         while (true) {
 
-            //double flex = analogInput.read();
+            double flex = analogInput.read();
 
-            //Thread.sleep(100);
-
-            System.out.println(speaker.getAppliedSignal());
+            System.out.println(flex);
 
             speaker.write(Signal.High);
 
+            Thread.sleep((long)flex * 100);
+
             speaker.write(Signal.Low);
+
+            Thread.sleep((long)flex / 100);
 
         }
 
@@ -63,6 +63,3 @@ public class Theramin {
 
 }
 
-// TODO: 4/27/16  make piezo speaker make a noise 
-
-// TODO: 4/27/16  make speaker respond to flex sensor
