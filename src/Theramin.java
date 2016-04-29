@@ -34,7 +34,6 @@ public class Theramin {
             double touch = (analogInput.read()) * 10;
                 int note = (int)touch;
 
-                System.out.println(note);
 
                 Thread.sleep(200);
 
