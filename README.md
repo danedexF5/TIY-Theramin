@@ -102,7 +102,7 @@ the SoftPot and slide it to change the note.
 8. Have fun!
 <br />
 <br />
-![Imgur](http://i.imgur.com/RoLgAwR.jpg?1))
+![Imgur](http://i.imgur.com/KsvmRiz.jpg)
 <br />
 <br />
 Video link:
